@@ -145,5 +145,5 @@ fi
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/tmpwatch
 %attr(750,root,root) %config(noreplace) %verify(not size mtime md5) /etc/cron.daily/*
-%attr(750,root,root) %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/%{name}
+%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/%{name}
 %{_mandir}/man8/*
