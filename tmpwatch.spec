@@ -28,7 +28,7 @@ recherche récursivement dans le répertoire (en ignorant les liens symboliques)
 et supprime les fichiers qui n'ont pas été accédés depuis une période donnée.
 
 %description -l pl
-W apkiecie znajduje siê program, który czy¶ci katalogi tmp ze starych plików.
+W pakiecie znajduje siê program, który czy¶ci katalogi tmp ze starych plików.
 
 %description -l tr
 Bu paket, dizinleri temizleyen bir program içerir. Simgesel baðlarý gözönüne
