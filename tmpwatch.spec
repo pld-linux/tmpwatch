@@ -70,7 +70,7 @@ gözönüne almadan dizinleri rekürsif olarak arar ve kullanýcýnýn
 aclocal
 %{__autoconf}
 %{__automake}
-libtoolize --copy --force
+%{__libtoolize}
 %configure
 %{__make}
 
