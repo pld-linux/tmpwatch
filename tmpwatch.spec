@@ -8,7 +8,7 @@ Summary(ru):	Утилита удаления файлов по критерию давности последнего доступа
 Summary(uk):	Утил╕та видалення файл╕в за критер╕╓м давност╕ останнього доступу
 Name:		tmpwatch
 Version:	2.8.4
-Release:	6
+Release:	7
 License:	GPL
 Group:		Applications/System
 # ftp://ftp.redhat.com/pub/redhat/linux/rawhide/SRPMS/SRPMS/
@@ -99,7 +99,7 @@ install -d $RPM_BUILD_ROOT/etc/cron.daily
 
 echo '%{_sbindir}/tmpwatch 240 /tmp /var/cache/man/{,*,X11R6,X11R6/*,local,local/*}/cat?' \
 	> $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch
-echo '%{_sbindir}/tmpwatch 720 /var/tmp' >> $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch
+echo '%{_sbindir}/tmpwatch 720 /var/tmp /var/spool/amavis/virusmails' >> $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch
 
 %clean
 rm -rf $RPM_BUILD_ROOT
