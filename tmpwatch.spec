@@ -61,6 +61,8 @@ make install \
 echo '%{_sbindir}/tmpwatch 240 /tmp /var/cache/man/{cat?,X11R6/cat?,local/cat?,pl/cat?}' \
 	> $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch
 
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man8/*
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
