@@ -48,10 +48,10 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/etc/{cron.daily,profile.d}
 
 make PREFIX=$RPM_BUILD_ROOT install
-echo '/usr/sbin/tmpwatch 240 /tmp /var/cache/man/cat?' \
+echo '%{_sbindir}/tmpwatch 240 /tmp /var/cache/man/cat?' \
 	> $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch
 
-echo '/usr/sbin/tmpwatch 240 ~/tmp' >$RPM_BUILD_ROOT/etc/profile.d/tmpwatch.sh
+echo '%{_sbindir}/tmpwatch 240 ~/tmp' >$RPM_BUILD_ROOT/etc/profile.d/tmpwatch.sh
 ln -sf tmpwatch.sh $RPM_BUILD_ROOT/etc/profile.d/tmpwatch.csh
 
 %clean
@@ -59,7 +59,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) /usr/sbin/tmpwatch
+%attr(755,root,root) %{_sbindir}/tmpwatch
 %attr(750,root,root) %config %verify(not size mtime md5) /etc/cron.daily/*
 %attr(755,root,root) /etc/profile.d/*
 %{_mandir}/man8/*
