@@ -1,6 +1,6 @@
 # Customized setings for tmpwatch
 
-# How long should be amavis quarantine keept (in hours).
+# How long should be amavis quarantine kept (in hours).
 # It's good idea to clean it, because there are mostly viruses and spam.
 # If you want to disable this feature - set it to 0.
 # Common values:
