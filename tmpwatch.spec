@@ -67,7 +67,7 @@ gözönüne almadan dizinleri rekürsif olarak arar ve kullanýcýnýn
 %patch0 -p1
 
 %build
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 %{__libtoolize}
