@@ -3,8 +3,8 @@ Summary(de): 	Entfernt Dateien eines bestimmten Alters aus Verzeichnissen
 Summary(fr): 	Nettoie les fichiers dans les répertoires en fonction de leur age
 Summary(pl): 	Kasuje pliki w podtstawowych katalogach (tmp)
 Name:        	tmpwatch
-Version:     	1.5.1 
-Release:     	4
+Version:     	1.7
+Release:     	2
 Source:      	%{name}-%{version}.tar.gz
 Copyright:   	GPL
 Group:      	Utilities/System
