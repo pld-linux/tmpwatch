@@ -6,6 +6,7 @@ Name:        	tmpwatch
 Version:     	1.7
 Release:     	2
 Source:      	%{name}-%{version}.tar.gz
+Patch:		tmpwatch-Makefile.patch
 Copyright:   	GPL
 Group:      	Utilities/System
 Group(pl):	Narzêdzia/System
@@ -37,6 +38,7 @@ bir sürede eriþilmemiþ olanlarý siler.
 
 %prep
 %setup -q
+%patch -p1
 
 %build
 make
