@@ -63,6 +63,12 @@ rm -rf $RPM_BUILD_ROOT
 /usr/man/man8/*
 
 %changelog
+* Thu Apr 22 1999 Artur Frysiak <wiget@pld.org.pl>
+  [1.5.1-4]
+- fixed %attr (now users allow to run tmpwatch)
+- added /etc/profile.d/tmpwatch.{sh,csh}
+- compiled on rpm 3
+
 * Thu Nov 12 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.5.1-3]
 - changed permission on tmpwatch to 750.
