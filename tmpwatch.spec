@@ -68,8 +68,8 @@ gözönüne almadan dizinleri rekürsif olarak arar ve kullanýcýnýn
 
 %build
 aclocal
-autoconf
-automake -a -c -f
+%{__autoconf}
+%{__automake}
 libtoolize --copy --force
 %configure
 %{__make}
