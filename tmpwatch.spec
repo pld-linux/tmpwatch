@@ -4,7 +4,7 @@ Summary(fr):	Nettoie les fichiers dans les répertoires en fonction de leur age
 Summary(pl):	Narzêdzie kasuj±ce pliki w oparciu o czas ostatniego dostêpu
 Name:		tmpwatch
 Version:	2.2
-Release:	2
+Release:	3
 License:	GPL
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
