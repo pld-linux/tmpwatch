@@ -1,26 +1,18 @@
-diff -Nru tmpwatch-2.0/Makefile tmpwatch-2.0.new/Makefile
---- tmpwatch-2.0/Makefile	Mon Aug 30 22:11:17 1999
-+++ tmpwatch-2.0.new/Makefile	Wed Sep 29 19:19:15 1999
-@@ -1,15 +1,18 @@
- VERSION=$(shell awk '/define version/ { print $$3 }' tmpwatch.spec)
- CVSTAG = r$(subst .,-,$(VERSION))
- 
-+mandir=$(PREFIX)/usr/man
-+sbindir=$(PREFIX)/usr/sbin
-+
- CFLAGS=$(RPM_OPT_FLAGS) -Wall -DVERSION=\"$(VERSION)\"
- 
+diff -Nru tmpwatch-2.1/Makefile tmpwatch-2.1.new/Makefile
+--- tmpwatch-2.1/Makefile	Thu Feb 10 00:51:40 2000
++++ tmpwatch-2.1.new/Makefile	Thu Feb 10 00:52:01 2000
+@@ -15,10 +15,10 @@
  all: tmpwatch
  
- install:
--	[ -d $(PREFIX)/usr/sbin ] || mkdir -p $(PREFIX)/usr/sbin
--	[ -d $(PREFIX)/usr/man/man8 ] || mkdir -p $(PREFIX)/usr/man/man8
--	install -s -m 755 tmpwatch $(PREFIX)/usr/sbin/tmpwatch
--	install -m 644 tmpwatch.8 $(PREFIX)/usr/man/man8/tmpwatch.8
-+	[ -d $(DESTDIR)$(sbindir) ] || mkdir -p $(DESTDIR)$(sbindir)
-+	[ -d $(DESTDIR)$(mandir)/man8 ] || mkdir -p $(DESTDIR)$(mandir)/man8
-+	install -s -m 755 tmpwatch $(DESTDIR)$(sbindir)/tmpwatch
-+	install -m 644 tmpwatch.8 $(DESTDIR)$(mandir)/man8/tmpwatch.8
+ install: all
+-	[ -d $(PREFIX)$(BASEDIR)/sbin ] || mkdir -p $(PREFIX)$(BASEDIR)/sbin
+-	[ -d $(PREFIX)$(BASEDIR)/man/man8 ] || mkdir -p $(PREFIX)$(BASEDIR)/man/man8
+-	$(INSTALL) -s -m 755 tmpwatch $(PREFIX)$(BASEDIR)/sbin/tmpwatch
+-	$(INSTALL) -m 644 tmpwatch.8 $(PREFIX)$(BASEDIR)/man/man8/tmpwatch.8
++	[ -d $(DESTDIR)$(BASEDIR)/sbin ] || mkdir -p $(DESTDIR)$(BASEDIR)/sbin
++	[ -d $(DESTDIR)$(BASEDIR)/share/man/man8 ] || mkdir -p $(DESTDIR)$(BASEDIR)/share/man/man8
++	$(INSTALL) -s -m 755 tmpwatch $(DESTDIR)$(BASEDIR)/sbin/tmpwatch
++	$(INSTALL) -m 644 tmpwatch.8 $(DESTDIR)$(BASEDIR)/share/man/man8/tmpwatch.8
  
  clean:
  	rm -f tmpwatch
