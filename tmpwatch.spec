@@ -8,13 +8,14 @@ Summary(ru):	Утилита удаления файлов по критерию давности последнего доступа
 Summary(uk):	Утил╕та видалення файл╕в за критер╕╓м давност╕ останнього доступу
 Name:		tmpwatch
 Version:	2.9.1
-Release:	3.1
+Release:	3.5
 License:	GPL
 Group:		Applications/System
 # New versions are taken from:
 # ftp://download.fedora.redhat.com/pub/fedora/linux/core/development/SRPMS/
 Source0:	http://piorun.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.gz
 # Source0-md5:	0780803e5ab13cb6b5858b5ed6dca9f5
+Source1:	%{name}.sysconfig
 Patch0:		%{name}-ac_am.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -98,12 +99,19 @@ rm -f missing
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/cron.daily
+install -d $RPM_BUILD_ROOT/etc/{cron.daily,sysconfig}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 cat > $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch <<EOF
+#!/bin/sh
+# Some defaults:
+AMAVIS_QUARANTINE="1440"
+if [ -f /etc/sysconfig/tmpwatch ]; then
+	. /etc/sysconfig/tmpwatch
+fi
+
 %{_sbindir}/tmpwatch -x /tmp/.X11-unix -x /tmp/.XIM-unix -x /tmp/.font-unix \
 -x /tmp/.ICE-unix -x /tmp/.Test-unix 240 /tmp
 %{_sbindir}/tmpwatch -f 240 /var/cache/man/{,*,X11R6,X11R6/*,local,local/*}/cat? 
@@ -114,9 +122,13 @@ if [ -d /var/run/php ]; then
 fi
 # Cleanup amavis quarantine:
 if [ -d /var/spool/amavis/virusmails ]; then
-	%{_sbindir}/tmpwatch 2880 /var/spool/amavis/virusmails
+	if [ ${AMAVIS_QUARANTINE} -ne 0 ]; then
+		%{_sbindir}/tmpwatch ${AMAVIS_QUARANTINE} /var/spool/amavis/virusmails
+	fi
 fi
 EOF
+
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -124,5 +136,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/tmpwatch
-%attr(750,root,root) %config %verify(not size mtime md5) /etc/cron.daily/*
+%attr(750,root,root) %config(noreplace) %verify(not size mtime md5) /etc/cron.daily/*
+%attr(750,root,root) %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/%{name}
 %{_mandir}/man8/*
