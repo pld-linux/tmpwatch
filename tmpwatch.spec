@@ -94,7 +94,8 @@ rm -f missing
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-%configure
+%configure \
+	CFLAGS="%{rpmcflags} -D_FILE_OFFSET_BITS=64"
 %{__make}
 
 %install
