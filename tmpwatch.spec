@@ -1,3 +1,5 @@
+# TODO:
+# - upgrade to never fedoras version
 Summary:	A utility for removing files based on when they were last accessed
 Summary(de):	Utility zum Entfernen von Dateien, basierend auf ihrer Zugriffszeit
 Summary(es):	Limpia archivos en directorios basado en sus edades
@@ -11,7 +13,7 @@ Version:	2.8.4
 Release:	8
 License:	GPL
 Group:		Applications/System
-# ftp://ftp.redhat.com/pub/redhat/linux/rawhide/SRPMS/SRPMS/
+# ftp://download.fedora.redhat.com/pub/fedora/linux/core/development/SRPMS/
 Source0:	%{name}-%{version}.tar.gz
 # Source0-md5:	3fda94d7b052f83006e542c2e57b322b
 Patch0:		%{name}-ac_am.patch
