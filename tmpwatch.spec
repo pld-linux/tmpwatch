@@ -8,7 +8,7 @@ Summary(ru):	Утилита удаления файлов по критерию давности последнего доступа
 Summary(uk):	Утил╕та видалення файл╕в за критер╕╓м давност╕ останнього доступу
 Name:		tmpwatch
 Version:	2.9.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 # New versions are taken from:
