@@ -4,7 +4,7 @@ Summary(fr): 	Nettoie les fichiers dans les répertoires en fonction de leur age
 Summary(pl): 	Kasuje pliki w podtstawowych katalogach (tmp)
 Name:        	tmpwatch
 Version:     	1.7
-Release:     	3
+Release:     	4
 Source:      	%{name}-%{version}.tar.gz
 Patch:		tmpwatch-Makefile.patch
 Copyright:   	GPL
@@ -52,7 +52,7 @@ make install \
 	sbindir="%{_sbindir}" \
 	mandir="%{_mandir}"
 	
-echo '%{_sbindir}/tmpwatch 240 /tmp /var/cache/man/cat?' \
+echo '%{_sbindir}/tmpwatch 240 /tmp /var/cache/man/{cat?,X11R6/cat?,local/cat?,pl/cat?}' \
 	> $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch
 
 %clean
@@ -70,4 +70,4 @@ rm -rf $RPM_BUILD_ROOT
 - rebuild in new evn.
 - based on RH spec
 - pl translation by Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
-- de, fr, tr by Prospector System <bugs@redhat.com>
+- start at RH spec file.
