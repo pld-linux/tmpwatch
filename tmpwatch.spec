@@ -8,7 +8,7 @@ Summary(ru):	Утилита удаления файлов по критерию давности последнего доступа
 Summary(uk):	Утил╕та видалення файл╕в за критер╕╓м давност╕ останнього доступу
 Name:		tmpwatch
 Version:	2.9.1
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		Applications/System
 # New versions are taken from:
@@ -105,9 +105,17 @@ install -d $RPM_BUILD_ROOT/etc/cron.daily
 
 cat > $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch <<EOF
 %{_sbindir}/tmpwatch -x /tmp/.X11-unix -x /tmp/.XIM-unix -x /tmp/.font-unix \
-	-x /tmp/.ICE-unix -x /tmp/.Test-unix 240 /tmp 
+-x /tmp/.ICE-unix -x /tmp/.Test-unix 240 /tmp
 %{_sbindir}/tmpwatch -f 240 /var/cache/man/{,*,X11R6,X11R6/*,local,local/*}/cat? 
 %{_sbindir}/tmpwatch 720 /var/tmp
+# Cleanup temporary files for php:
+if [ -d /var/run/php ]; then
+	%{_sbindir}/tmpwatch 720 /var/run/php
+fi
+# Cleanup directories for amavis:
+if [ -d /var/spool/amavis/virusmails ]; then
+	%{_sbindir}/tmpwatch 1440 /var/spool/amavis/virusmails
+fi
 EOF
 
 %clean
