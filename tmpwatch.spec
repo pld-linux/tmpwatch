@@ -2,9 +2,11 @@ Summary:	A utility for removing files based on when they were last accessed
 Summary(de):	Utility zum Entfernen von Dateien, basierend auf ihrer Zugriffszeit
 Summary(fr):	Nettoie les fichiers dans les rИpertoires en fonction de leur age
 Summary(pl):	NarzЙdzie kasuj╠ce pliki w oparciu o czas ostatniego dostЙpu
+Summary(ru):	Утилита удаления файлов по критерию давности последнего доступа
+Summary(uk):	Утил╕та видалення файл╕в за критер╕╓м давност╕ останнього доступу
 Name:		tmpwatch
 Version:	2.8.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 # ftp://ftp.redhat.com/pub/redhat/linux/rawhide/SRPMS/SRPMS/
@@ -45,6 +47,20 @@ z plikСw nie odczytywanych przez okre╤lony czas.
 Bu paket, dizinleri temizleyen bir program iГerir. Simgesel baПlarЩ
 gЖzЖnЭne almadan dizinleri rekЭrsif olarak arar ve kullanЩcЩnЩn
 Жnceden belirlediПi bir sЭrede eriЧilmemiЧ olanlarЩ siler.
+
+%description -l ru
+Утилита tmpwatch рекурсивно удаляет в указанных каталогах файлы, к
+которым не было доступа указанное время. Обычно используется для
+очистки каталогов, хранящих временные файлы (например, /tmp). Эта
+утилита игнорирует симлинки, не переходит на другие файловые системы и
+удаляет только пустые каталоги и обычные (не специальные) файлы.
+
+%description -l uk
+Утил╕та tmpwatch рекурсивно видаля╓ у вказаних каталогах файли, до
+яких не було доступу вказаний час. Звичайно використову╓ться для
+очистки каталог╕в, що збер╕гають тимчасов╕ файли (наприклад, /tmp). Ця
+утил╕та ╕гнору╓ симл╕нки, не переходить на ╕нш╕ файлов╕ системи ╕
+видаля╓ т╕льки порожн╕ каталоги та звичайн╕ (не спец╕альн╕) файли.
 
 %prep
 %setup -q
