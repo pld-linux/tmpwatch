@@ -3,10 +3,11 @@ Summary(de):	Utility zum Entfernen von Dateien, basierend auf ihrer Zugriffszeit
 Summary(fr):	Nettoie les fichiers dans les répertoires en fonction de leur age
 Summary(pl):	Narzêdzie kasuj±ce pliki w oparciu o czas ostatniego dostêpu
 Name:		tmpwatch
-Version:	2.6.1
-Release:	3
+Version:	2.8.2
+Release:	1
 License:	GPL
 Group:		Applications/System
+# ftp://ftp.redhat.com/pub/redhat/linux/rawhide/SRPMS/SRPMS/
 Source0:	%{name}-%{version}.tar.gz
 Patch0:		%{name}-ac_am.patch
 BuildRequires:	autoconf
