@@ -13,7 +13,7 @@ License:	GPL
 Group:		Applications/System
 # ftp://ftp.redhat.com/pub/redhat/linux/rawhide/SRPMS/SRPMS/
 Source0:	%{name}-%{version}.tar.gz
-# Source0-md5: 3fda94d7b052f83006e542c2e57b322b
+# Source0-md5:	3fda94d7b052f83006e542c2e57b322b
 Patch0:		%{name}-ac_am.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
