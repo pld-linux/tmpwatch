@@ -62,7 +62,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /usr/sbin/tmpwatch
 %attr(750,root,root) %config %verify(not size mtime md5) /etc/cron.daily/*
 %attr(755,root,root) /etc/profile.d/*
-/usr/man/man8/*
+%{_mandir}/man8/*
 
 %changelog
 * Thu Apr 22 1999 Artur Frysiak <wiget@pld.org.pl>
