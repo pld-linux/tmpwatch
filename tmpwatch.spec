@@ -1,5 +1,3 @@
-# TODO:
-# - upgrade to never fedoras version
 Summary:	A utility for removing files based on when they were last accessed
 Summary(de):	Utility zum Entfernen von Dateien, basierend auf ihrer Zugriffszeit
 Summary(es):	Limpia archivos en directorios basado en sus edades
@@ -9,13 +7,14 @@ Summary(pt_BR):	Limpa arquivos em diretСrios baseado em suas idades
 Summary(ru):	Утилита удаления файлов по критерию давности последнего доступа
 Summary(uk):	Утил╕та видалення файл╕в за критер╕╓м давност╕ останнього доступу
 Name:		tmpwatch
-Version:	2.8.4
-Release:	9
+Version:	2.9.1
+Release:	0.1
 License:	GPL
 Group:		Applications/System
+# New versions are taken from:
 # ftp://download.fedora.redhat.com/pub/fedora/linux/core/development/SRPMS/
-Source0:	%{name}-%{version}.tar.gz
-# Source0-md5:	3fda94d7b052f83006e542c2e57b322b
+Source0:	http://piorun.ds.pg.gda.pl/~blues/SOURCES/%{name}-%{version}.tar.gz
+# Source0-md5:	0780803e5ab13cb6b5858b5ed6dca9f5
 Patch0:		%{name}-ac_am.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -104,9 +103,12 @@ install -d $RPM_BUILD_ROOT/etc/cron.daily
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-echo '%{_sbindir}/tmpwatch 240 /tmp /var/cache/man/{,*,X11R6,X11R6/*,local,local/*}/cat?' \
-	> $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch
-echo '%{_sbindir}/tmpwatch 720 /var/tmp' >> $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch
+cat > $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch <<EOF
+%{_sbindir}/tmpwatch -x /tmp/.X11-unix -x /tmp/.XIM-unix -x /tmp/.font-unix \
+	-x /tmp/.ICE-unix -x /tmp/.Test-unix 240 /tmp 
+%{_sbindir}/tmpwatch -f 240 /var/cache/man/{,*,X11R6,X11R6/*,local,local/*}/cat? 
+%{_sbindir}/tmpwatch 720 /var/tmp
+EOF
 
 %clean
 rm -rf $RPM_BUILD_ROOT
