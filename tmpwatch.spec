@@ -1,12 +1,14 @@
 Summary:	A utility for removing files based on when they were last accessed
 Summary(de):	Utility zum Entfernen von Dateien, basierend auf ihrer Zugriffszeit
+Summary(es):	Limpia archivos en directorios basado en sus edades
 Summary(fr):	Nettoie les fichiers dans les répertoires en fonction de leur age
 Summary(pl):	Narzêdzie kasuj±ce pliki w oparciu o czas ostatniego dostêpu
+Summary(pt_BR):	Limpa arquivos em diretórios baseado em suas idades
 Summary(ru):	õÔÉÌÉÔÁ ÕÄÁÌÅÎÉÑ ÆÁÊÌÏ× ĞÏ ËÒÉÔÅÒÉÀ ÄÁ×ÎÏÓÔÉ ĞÏÓÌÅÄÎÅÇÏ ÄÏÓÔÕĞÁ
 Summary(uk):	õÔÉÌ¦ÔÁ ×ÉÄÁÌÅÎÎÑ ÆÁÊÌ¦× ÚÁ ËÒÉÔÅÒ¦¤Í ÄÁ×ÎÏÓÔ¦ ÏÓÔÁÎÎØÏÇÏ ÄÏÓÔÕĞÕ
 Name:		tmpwatch
-Version:	2.8.2
-Release:	2
+Version:	2.8.4
+Release:	5
 License:	GPL
 Group:		Applications/System
 # ftp://ftp.redhat.com/pub/redhat/linux/rawhide/SRPMS/SRPMS/
@@ -33,6 +35,12 @@ aufzuräumen, in denen temporäre Dateien gelagert werden (z.B. /tmp).
 Tmpwatch ignoriert symlinks, wechselt kein Filesystem und entfernt nur
 normale Dateien und leere Verzeichnisse.
 
+%description -l es
+Este paquete nos ofrece un programa que puede ser usado para limpiar
+directorios. Periódicamente remueve el directorio (ignorando symlinks)
+y elimina archivos que no fueron accedidos en un tiempo especificado
+por el usuario.
+
 %description -l fr
 Ce paquetage offre un programme permettant de nettoyer les
 répertoires. Il recherche récursivement dans le répertoire (en
@@ -42,6 +50,12 @@ ignorant les liens symboliques) et supprime les fichiers qui n'ont pas
 %description -l pl
 W pakiecie znajduje siê program, który czy¶ci katalogi tmp oraz catman
 z plików nie odczytywanych przez okre¶lony czas.
+
+%description -l pt_BR
+Este pacote oferece um programa que pode ser usado para limpar
+diretórios. Ele periodicamente vasculha o diretório (ignorando
+symlinks) e remove arquivos que não foram acessados em um tempo
+especificado pelo usuário.
 
 %description -l tr
 Bu paket, dizinleri temizleyen bir program içerir. Simgesel bağları
@@ -67,6 +81,7 @@ gözönüne almadan dizinleri rekürsif olarak arar ve kullanıcının
 %patch0 -p1
 
 %build
+rm -f missing
 %{__aclocal}
 %{__autoconf}
 %{__automake}
