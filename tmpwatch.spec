@@ -7,8 +7,6 @@ Version:	2.6.1
 Release:	3
 License:	GPL
 Group:		Applications/System
-Group(pl):	Aplikacje/System
-Group(de):	Applikationen/System
 Source0:	%{name}-%{version}.tar.gz
 Patch0:		%{name}-ac_am.patch
 BuildRequires:	autoconf
