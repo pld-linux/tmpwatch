@@ -1,0 +1,11 @@
+# Customized setings for tmpwatch
+
+# How long should be amavis quarantine keept (in hours).
+# It's good idea to clean it, because there are mostly viruses and spam.
+# If you want to disable this feature - set it to 0.
+# Common values:
+# 720 - 30 days
+# 1440 - 60 days
+# 4320 - 180 days
+# 8760 - 365 days
+AMAVIS_QUARANTINE="1440"
