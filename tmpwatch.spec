@@ -83,10 +83,10 @@ gözönüne almadan dizinleri rekürsif olarak arar ve kullanýcýnýn
 
 %build
 rm -f missing
+%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-%{__libtoolize}
 %configure
 %{__make}
 
