@@ -8,7 +8,7 @@ Summary(ru):	Утилита удаления файлов по критерию давности последнего доступа
 Summary(uk):	Утил╕та видалення файл╕в за критер╕╓м давност╕ останнього доступу
 Name:		tmpwatch
 Version:	2.9.1
-Release:	3.5
+Release:	3.6
 License:	GPL
 Group:		Applications/System
 # New versions are taken from:
@@ -132,6 +132,11 @@ install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%triggerpostun -- %{name} < 2.9.1-4
+echo "WARNING"
+echo "Take a look at /etc/sysconfig/%{name}"
+echo "That version has enabled amavis-spool cleaning"
 
 %files
 %defattr(644,root,root,755)
