@@ -101,7 +101,7 @@ install -d $RPM_BUILD_ROOT/etc/cron.daily
 
 echo '%{_sbindir}/tmpwatch 240 /tmp /var/cache/man/{,*,X11R6,X11R6/*,local,local/*}/cat?' \
 	> $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch
-echo '%{_sbindir}/tmpwatch 720 /var/tmp /var/spool/amavis/virusmails' >> $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch
+echo '%{_sbindir}/tmpwatch 720 /var/tmp /var/spool/amavis/virusmails /var/run/php' >> $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch
 
 %clean
 rm -rf $RPM_BUILD_ROOT
