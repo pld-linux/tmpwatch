@@ -4,7 +4,7 @@ Summary(fr):	Nettoie les fichiers dans les répertoires en fonction de leur age
 Summary(pl):	Narzêdzie kasuj±ce pliki w oparciu o czas ostatniego dostêpu
 Name:		tmpwatch
 Version:	2.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
@@ -58,8 +58,8 @@ make install \
 	DESTDIR="$RPM_BUILD_ROOT" \
 	sbindir="%{_sbindir}" \
 	mandir="%{_mandir}"
-	
-echo '%{_sbindir}/tmpwatch 240 /tmp /var/cache/man/{cat?,X11R6/cat?,local/cat?,pl/cat?}' \
+
+echo '%{_sbindir}/tmpwatch 240 /tmp /var/cache/man/{,*,X11R6,X11R6/*,local,local/*}/cat?' \
 	> $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man8/*
