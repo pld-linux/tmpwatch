@@ -10,6 +10,7 @@ Group:		Utilities/System
 Group(pl):	Narzêdzia/System
 Source:		%{name}-%{version}.tar.gz
 Patch:		tmpwatch-Makefile.patch
+Patch1:		tmpwatch-dos.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -46,6 +47,7 @@ belirlediði bir sürede eriþilmemiþ olanlarý siler.
 %prep
 %setup -q
 %patch -p1
+%patch1 -p1
 
 %build
 %{__make}
