@@ -10,7 +10,7 @@ Summary(ru):	õÔÉÌÉÔÁ ÕÄÁÌÅÎÉÑ ÆÁÊÌÏ× ÐÏ ËÒÉÔÅÒÉÀ ÄÁ×ÎÏÓÔÉ ÐÏÓÌÅÄÎÅÇÏ ÄÏÓÔÕÐÁ
 Summary(uk):	õÔÉÌ¦ÔÁ ×ÉÄÁÌÅÎÎÑ ÆÁÊÌ¦× ÚÁ ËÒÉÔÅÒ¦¤Í ÄÁ×ÎÏÓÔ¦ ÏÓÔÁÎÎØÏÇÏ ÄÏÓÔÕÐÕ
 Name:		tmpwatch
 Version:	2.8.4
-Release:	8
+Release:	9
 License:	GPL
 Group:		Applications/System
 # ftp://download.fedora.redhat.com/pub/fedora/linux/core/development/SRPMS/
@@ -25,9 +25,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 The tmpwatch utility recursively searches through specified
 directories and removes files which have not been accessed in a
-specified period of time. Tmpwatch is normally used to clean up
+specified period of time. tmpwatch is normally used to clean up
 directories which are used for temporarily holding files (for example,
-/tmp). Tmpwatch ignores symlinks, won't switch filesystems and only
+/tmp). tmpwatch ignores symlinks, won't switch filesystems and only
 removes empty directories and regular files.
 
 %description -l de
@@ -51,8 +51,13 @@ ignorant les liens symboliques) et supprime les fichiers qui n'ont pas
 été accédés depuis une période donnée.
 
 %description -l pl
-W pakiecie znajduje siê program, który czy¶ci katalogi tmp oraz catman
-z plików nie odczytywanych przez okre¶lony czas.
+tmpwatch rekursywnie przeszukuje wyspecyfikowane katalogi szukaj±c
+plików, które nie by³y u¿ywane przez okre¶lony okres czasu, w celu
+ich usuniêcia. Jest on zazwyczaj u¿ywany do czyszczenia katalogów
+w których przechowywane s± pliki tymczasowe (na przyk³ad /tmp).
+tmpwatch ignoruje symlinki, nie zmienia systemu plików podczas
+przeszukiwania katalogów, usuwa tylko puste katalogi i zwyczajne
+pliki.
 
 %description -l pt_BR
 Este pacote oferece um programa que pode ser usado para limpar
@@ -101,7 +106,7 @@ install -d $RPM_BUILD_ROOT/etc/cron.daily
 
 echo '%{_sbindir}/tmpwatch 240 /tmp /var/cache/man/{,*,X11R6,X11R6/*,local,local/*}/cat?' \
 	> $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch
-echo '%{_sbindir}/tmpwatch 720 /var/tmp /var/spool/amavis/virusmails /var/run/php' >> $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch
+echo '%{_sbindir}/tmpwatch 720 /var/tmp' >> $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch
 
 %clean
 rm -rf $RPM_BUILD_ROOT
