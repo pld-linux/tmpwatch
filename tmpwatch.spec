@@ -5,11 +5,11 @@ Summary(pl): 	Kasuje pliki w podtstawowych katalogach (tmp)
 Name:        	tmpwatch
 Version:     	1.7
 Release:     	4
+Copyright:      GPL
+Group:          Utilities/System
+Group(pl):      Narzêdzia/System
 Source:      	%{name}-%{version}.tar.gz
 Patch:		tmpwatch-Makefile.patch
-Copyright:   	GPL
-Group:      	Utilities/System
-Group(pl):	Narzêdzia/System
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
