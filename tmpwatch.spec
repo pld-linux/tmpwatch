@@ -10,7 +10,7 @@ Group:		Utilities/System
 Group(pl):	Narzêdzia/System
 Source:		%{name}-%{version}.tar.gz
 Patch:		tmpwatch-Makefile.patch
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 The tmpwatch utility recursively searches through specified directories and
