@@ -3,15 +3,17 @@ Summary(de):	Utility zum Entfernen von Dateien, basierend auf ihrer Zugriffszeit
 Summary(fr):	Nettoie les fichiers dans les répertoires en fonction de leur age
 Summary(pl):	Narzêdzie kasuj±ce pliki w oparciu o czas ostatniego dostêpu
 Name:		tmpwatch
-Version:	2.2
-Release:	3
+Version:	2.6.1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Group(pl):	Aplikacje/System
 Group(de):	Applikationen/System
 Source0:	%{name}-%{version}.tar.gz
-Patch0:		%{name}-Makefile.patch
-Patch1:		%{name}-dos.patch
+Patch0:		%{name}-ac_am.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -47,10 +49,14 @@ gözönüne almadan dizinleri rekürsif olarak arar ve kullanýcýnýn
 
 %prep
 %setup -q
-%patch -p1
-%patch1 -p1
+%patch0 -p1
 
 %build
+aclocal
+autoconf
+automake -a -c
+libtoolize --copy --force
+%configure
 %{__make}
 
 %install
@@ -58,14 +64,10 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/etc/cron.daily
 
 %{__make} install \
-	DESTDIR="$RPM_BUILD_ROOT" \
-	sbindir="%{_sbindir}" \
-	mandir="%{_mandir}"
+	DESTDIR=$RPM_BUILD_ROOT
 
 echo '%{_sbindir}/tmpwatch 240 /tmp /var/cache/man/{,*,X11R6,X11R6/*,local,local/*}/cat?' \
 	> $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch
-
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man8/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
