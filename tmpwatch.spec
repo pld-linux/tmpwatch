@@ -4,7 +4,7 @@ Summary(fr): 	Nettoie les fichiers dans les répertoires en fonction de leur age
 Summary(pl): 	Kasuje pliki w podtstawowych katalogach (tmp)
 Name:        	tmpwatch
 Version:     	1.7
-Release:     	2
+Release:     	3
 Source:      	%{name}-%{version}.tar.gz
 Patch:		tmpwatch-Makefile.patch
 Copyright:   	GPL
