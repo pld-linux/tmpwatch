@@ -1,14 +1,15 @@
-Summary:     Cleans up files in directories based on their age
-Summary(de): Entfernt Dateien eines bestimmten Alters aus Verzeichnissen
-Summary(fr): Nettoie les fichiers dans les répertoires en fonction de leur age
-Summary(pl): Kasuje pliki w podtstawowych katalogach (tmp)
-Name:        tmpwatch
-Version:     1.5.1 
-Release:     3
-Source:      %{name}-%{version}.tar.gz
-Copyright:   GPL
-Group:       Utilities/System
-Buildroot:   /tmp/%{name}-%{version}-root
+Summary:     	Cleans up files in directories based on their age
+Summary(de): 	Entfernt Dateien eines bestimmten Alters aus Verzeichnissen
+Summary(fr): 	Nettoie les fichiers dans les répertoires en fonction de leur age
+Summary(pl): 	Kasuje pliki w podtstawowych katalogach (tmp)
+Name:        	tmpwatch
+Version:     	1.5.1 
+Release:     	4
+Source:      	%{name}-%{version}.tar.gz
+Copyright:   	GPL
+Group:      	Utilities/System
+Group(pl):	Narzêdzia/System
+Buildroot:   	/tmp/%{name}-%{version}-root
 
 %description
 This package provides a program that can be used to clean out directories. It
@@ -42,19 +43,24 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/cron.daily
+install -d $RPM_BUILD_ROOT/etc/{cron.daily,profile.d}
 
 make PREFIX=$RPM_BUILD_ROOT install
 echo '/usr/sbin/tmpwatch 240 /tmp /var/catman/cat?' \
 	> $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch
 
+echo '/usr/sbin/tmpwatch 240 ~/tmp' >$RPM_BUILD_ROOT/etc/profile.d/tmpwatch.sh
+ln -sf tmpwatch.sh $RPM_BUILD_ROOT/etc/profile.d/tmpwatch.csh
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%attr(750, root, root) /usr/sbin/tmpwatch
-%attr(644, root,  man) /usr/man/man8/*
-%attr(750, root, root) %config %verify(not size mtime md5) /etc/cron.daily/*
+%defattr(644,root,root,755)
+%attr(755,root,root) /usr/sbin/tmpwatch
+%attr(750,root,root) %config %verify(not size mtime md5) /etc/cron.daily/*
+%attr(755,root,root) /etc/profile.d/*
+/usr/man/man8/*
 
 %changelog
 * Thu Nov 12 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
