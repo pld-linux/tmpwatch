@@ -48,7 +48,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/etc/{cron.daily,profile.d}
 
 make PREFIX=$RPM_BUILD_ROOT install
-echo '/usr/sbin/tmpwatch 240 /tmp /var/catman/cat?' \
+echo '/usr/sbin/tmpwatch 240 /tmp /var/cache/man/cat?' \
 	> $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch
 
 echo '/usr/sbin/tmpwatch 240 ~/tmp' >$RPM_BUILD_ROOT/etc/profile.d/tmpwatch.sh
