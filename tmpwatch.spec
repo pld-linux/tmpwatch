@@ -1,10 +1,10 @@
-Summary:     	Cleans up files in directories based on their age
-Summary(de): 	Entfernt Dateien eines bestimmten Alters aus Verzeichnissen
-Summary(fr): 	Nettoie les fichiers dans les répertoires en fonction de leur age
-Summary(pl): 	Kasuje pliki w podtstawowych katalogach (tmp)
+Summary:	A utility for removing files based on when they were last accessed
+Summary(de):	Utility zum Entfernen von Dateien, basierend auf ihrer Zugriffszeit
+Summary(fr):	Nettoie les fichiers dans les répertoires en fonction de leur age
+Summary(pl):	Narzêdzie kasuj±ce pliki w oparciu o czas ostatniego dostêpu
 Name:        	tmpwatch
 Version:     	2.0
-Release:     	2
+Release:     	3
 Copyright:      GPL
 Group:          Utilities/System
 Group(pl):      Narzêdzia/System
@@ -13,15 +13,20 @@ Patch:		tmpwatch-Makefile.patch
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
-This package provides a program that can be used to clean out directories. It
-recursively searches the directory (ignoring symlinks) and removes files that
-haven't been accessed in a user-specified amount of time.
+The tmpwatch utility recursively searches through specified directories and
+removes files which have not been accessed in a specified period of time.
+Tmpwatch is normally used to clean up directories which are used for
+temporarily holding files (for example, /tmp). Tmpwatch ignores symlinks,
+won't switch filesystems and only removes empty directories and regular
+files.
 
 %description -l de
-Dieses Paket enthält ein Programm zum Aufräumen von Verzeichnissen. Es 
-durchsucht das Verzeichnis (Symlinks werden ignoriert) rekursiv und entfernt 
-Dateien, auf die in der vom Benutzer definierten Zeit nicht zugegriffen 
-wurde.
+Das tmpwatch-Utility sucht rekursiv durch angegebene Verzeichnisse und
+entfernt Dateien, die in einer angegebenen Zeitspanne nicht benutzt wurden. 
+Tmpwatch wird normalerweise benutzt, um Verzeichnisse aufzuräumen, in denen
+temporäre Dateien gelagert werden (z.B. /tmp).  Tmpwatch ignoriert symlinks,
+wechselt kein Filesystem und entfernt nur normale Dateien und leere
+Verzeichnisse.
 
 %description -l fr
 Ce paquetage offre un programme permettant de nettoyer les répertoires. Il
@@ -29,7 +34,8 @@ recherche récursivement dans le répertoire (en ignorant les liens symboliques)
 et supprime les fichiers qui n'ont pas été accédés depuis une période donnée.
 
 %description -l pl
-W pakiecie znajduje siê program, który czy¶ci katalogi tmp ze starych plików.
+W pakiecie znajduje siê program, który czy¶ci katalogi tmp oraz catman z
+plików nie odczytywanych przez okre¶lony czas.
 
 %description -l tr
 Bu paket, dizinleri temizleyen bir program içerir. Simgesel baðlarý gözönüne
