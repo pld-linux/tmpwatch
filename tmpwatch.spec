@@ -8,7 +8,7 @@ Summary(ru):	Утилита удаления файлов по критерию давности последнего доступа
 Summary(uk):	Утил╕та видалення файл╕в за критер╕╓м давност╕ останнього доступу
 Name:		tmpwatch
 Version:	2.8.4
-Release:	7
+Release:	8
 License:	GPL
 Group:		Applications/System
 # ftp://ftp.redhat.com/pub/redhat/linux/rawhide/SRPMS/SRPMS/
