@@ -63,11 +63,3 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/tmpwatch
 %attr(750,root,root) %config %verify(not size mtime md5) /etc/cron.daily/*
 %{_mandir}/man8/*
-
-%changelog
-* Thu May 20 1999 Artur Frysiak <wiget@pld.org.pl>
-  [1.7-2]
-- rebuild in new evn.
-- based on RH spec
-- pl translation by Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
-- start at RH spec file.
