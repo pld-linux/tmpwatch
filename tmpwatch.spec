@@ -114,7 +114,9 @@ fi
 
 %{_sbindir}/tmpwatch -x /tmp/.X11-unix -x /tmp/.XIM-unix -x /tmp/.font-unix \
 -x /tmp/.ICE-unix -x /tmp/.Test-unix 240 /tmp
-%{_sbindir}/tmpwatch -f 240 /var/cache/man/{,*,X11R6,X11R6/*,local,local/*}/cat? 
+if [ -d /var/cache/man ]; then
+	%{_sbindir}/tmpwatch -f 240 /var/cache/man/{,*,X11R6,X11R6/*,local,local/*}/cat? 
+fi
 %{_sbindir}/tmpwatch 720 /var/tmp
 # Cleanup temporary files for php:
 if [ -d /var/run/php ]; then
