@@ -10,7 +10,7 @@ Patch:		tmpwatch-Makefile.patch
 Copyright:   	GPL
 Group:      	Utilities/System
 Group(pl):	Narzêdzia/System
-Buildroot:   	/tmp/%{name}-%{version}-root
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 This package provides a program that can be used to clean out directories. It
