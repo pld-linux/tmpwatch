@@ -8,7 +8,7 @@ Summary(ru):	Утилита удаления файлов по критерию давности последнего доступа
 Summary(uk):	Утил╕та видалення файл╕в за критер╕╓м давност╕ останнього доступу
 Name:		tmpwatch
 Version:	2.9.1
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/System
 # New versions are taken from:
@@ -125,8 +125,8 @@ if [ -d /var/run/php ]; then
 fi
 # Cleanup amavis quarantine:
 if [ -d /var/spool/amavis/virusmails ]; then
-	if [ ${AMAVIS_QUARANTINE} -ne 0 ]; then
-		%{_sbindir}/tmpwatch ${AMAVIS_QUARANTINE} /var/spool/amavis/virusmails
+	if [ \${AMAVIS_QUARANTINE} -ne 0 ]; then
+		%{_sbindir}/tmpwatch \${AMAVIS_QUARANTINE} /var/spool/amavis/virusmails
 	fi
 fi
 EOF
