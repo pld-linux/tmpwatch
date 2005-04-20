@@ -8,7 +8,7 @@ Summary(ru):	Утилита удаления файлов по критерию давности последнего доступа
 Summary(uk):	Утил╕та видалення файл╕в за критер╕╓м давност╕ останнього доступу
 Name:		tmpwatch
 Version:	2.9.2
-Release:	1
+Release:	1.1
 License:	GPL
 Group:		Applications/System
 # New versions are taken from:
@@ -105,7 +105,7 @@ install -d $RPM_BUILD_ROOT/etc/{cron.daily,sysconfig}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-cat > $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch <<EOF
+cat > $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch <<'EOF'
 #!/bin/sh
 # Some defaults:
 AMAVIS_QUARANTINE="1440"
@@ -116,7 +116,10 @@ fi
 %{_sbindir}/tmpwatch -x /tmp/.X11-unix -x /tmp/.XIM-unix -x /tmp/.font-unix \
 -x /tmp/.ICE-unix -x /tmp/.Test-unix 240 /tmp
 if [ -d /var/cache/man ]; then
-	%{_sbindir}/tmpwatch -f 240 /var/cache/man/{,*,X11R6,X11R6/*,local,local/*}/cat? 
+	# without locale
+	%{_sbindir}/tmpwatch -f 240 /var/cache/man/{{X11R6,local}/,}cat?
+	# with locale subdirs
+	%{_sbindir}/tmpwatch -f 240 /var/cache/man/{local,X11R6,}/{??,??_??}/cat? 2>/dev/null
 fi
 %{_sbindir}/tmpwatch 720 /var/tmp
 # Cleanup temporary files for php:
@@ -125,8 +128,8 @@ if [ -d /var/run/php ]; then
 fi
 # Cleanup amavis quarantine:
 if [ -d /var/spool/amavis/virusmails ]; then
-	if [ \${AMAVIS_QUARANTINE} -ne 0 ]; then
-		%{_sbindir}/tmpwatch \${AMAVIS_QUARANTINE} /var/spool/amavis/virusmails
+	if [ ${AMAVIS_QUARANTINE} -ne 0 ]; then
+		%{_sbindir}/tmpwatch ${AMAVIS_QUARANTINE} /var/spool/amavis/virusmails
 	fi
 fi
 EOF
