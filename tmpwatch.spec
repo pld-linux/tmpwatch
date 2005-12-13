@@ -52,12 +52,11 @@ ignorant les liens symboliques) et supprime les fichiers qui n'ont pas
 
 %description -l pl
 tmpwatch rekursywnie przeszukuje wyspecyfikowane katalogi szukaj±c
-plików, które nie by³y u¿ywane przez okre¶lony okres czasu, w celu
-ich usuniêcia. Jest on zazwyczaj u¿ywany do czyszczenia katalogów
-w których przechowywane s± pliki tymczasowe (na przyk³ad /tmp).
-tmpwatch ignoruje symlinki, nie zmienia systemu plików podczas
-przeszukiwania katalogów, usuwa tylko puste katalogi i zwyczajne
-pliki.
+plików, które nie by³y u¿ywane przez okre¶lony okres czasu, w celu ich
+usuniêcia. Jest on zazwyczaj u¿ywany do czyszczenia katalogów w
+których przechowywane s± pliki tymczasowe (na przyk³ad /tmp). tmpwatch
+ignoruje symlinki, nie zmienia systemu plików podczas przeszukiwania
+katalogów, usuwa tylko puste katalogi i zwyczajne pliki.
 
 %description -l pt_BR
 Este pacote oferece um programa que pode ser usado para limpar
@@ -148,6 +147,6 @@ fi
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/tmpwatch
-%attr(750,root,root) %config(noreplace) %verify(not size mtime md5) /etc/cron.daily/*
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/%{name}
+%attr(750,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/cron.daily/*
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/%{name}
 %{_mandir}/man8/*
