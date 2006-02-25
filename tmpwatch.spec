@@ -7,14 +7,14 @@ Summary(pt_BR):	Limpa arquivos em diretСrios baseado em suas idades
 Summary(ru):	Утилита удаления файлов по критерию давности последнего доступа
 Summary(uk):	Утил╕та видалення файл╕в за критер╕╓м давност╕ останнього доступу
 Name:		tmpwatch
-Version:	2.9.4
+Version:	2.9.6
 Release:	1
 License:	GPL
 Group:		Applications/System
 # New versions are taken from:
 # ftp://download.fedora.redhat.com/pub/fedora/linux/core/development/SRPMS/
 Source0:	%{name}-%{version}.tar.gz
-# Source0-md5:	3317c7f45eb35690d78c87cdf50d0e3e
+# Source0-md5:	6c316f1853a30bfee182fee23e509317
 Source1:	%{name}.sysconfig
 Patch0:		%{name}-ac_am.patch
 BuildRequires:	autoconf
