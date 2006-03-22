@@ -1,7 +1,7 @@
 # Customized setings for tmpwatch
 
 # Options for cron tmpwatch call:
-OPTIONS="-f"
+OPTIONS="-fq"
 
 # How long should be amavis quarantine kept (in hours).
 # It's good idea to clean it, because there are mostly viruses and spam.
