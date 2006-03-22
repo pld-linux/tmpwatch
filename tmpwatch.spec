@@ -1,3 +1,7 @@
+# TODO:
+# - move whole amavis-related stuff to it's own spec. trigger is needed...
+# - move man-related dirs to man.spec
+#
 Summary:	A utility for removing files based on when they were last accessed
 Summary(de):	Utility zum Entfernen von Dateien, basierend auf ihrer Zugriffszeit
 Summary(es):	Limpia archivos en directorios basado en sus edades
@@ -8,7 +12,7 @@ Summary(ru):	Утилита удаления файлов по критерию давности последнего доступа
 Summary(uk):	Утил╕та видалення файл╕в за критер╕╓м давност╕ останнього доступу
 Name:		tmpwatch
 Version:	2.9.6
-Release:	1
+Release:	1.5
 License:	GPL
 Group:		Applications/System
 # New versions are taken from:
@@ -16,6 +20,8 @@ Group:		Applications/System
 Source0:	%{name}-%{version}.tar.gz
 # Source0-md5:	6c316f1853a30bfee182fee23e509317
 Source1:	%{name}.sysconfig
+Source2:	%{name}.cron
+Source3:	%{name}.conf
 Patch0:		%{name}-ac_am.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -99,41 +105,41 @@ rm -f missing
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/{cron.daily,sysconfig}
+install -d $RPM_BUILD_ROOT/etc/{cron.daily,sysconfig,%{name}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-cat > $RPM_BUILD_ROOT/etc/cron.daily/tmpwatch <<'EOF'
+cat > $RPM_BUILD_ROOT/etc/cron.daily/%{name} <<'EOF'
 #!/bin/sh
 # Some defaults:
 AMAVIS_QUARANTINE="1440"
+OPTIONS="-fq"
 if [ -f /etc/sysconfig/tmpwatch ]; then
 	. /etc/sysconfig/tmpwatch
 fi
 
-%{_sbindir}/tmpwatch -x /tmp/.X11-unix -x /tmp/.XIM-unix -x /tmp/.font-unix \
+%{_sbindir}/tmpwatch ${OPTIONS} -x /tmp/.X11-unix -x /tmp/.XIM-unix -x /tmp/.font-unix \
 -x /tmp/.ICE-unix -x /tmp/.Test-unix 240 /tmp
 if [ -d /var/cache/man ]; then
 	# without locale
-	%{_sbindir}/tmpwatch -f 240 /var/cache/man/{{X11R6,local}/,}cat?
+	%{_sbindir}/tmpwatch ${OPTIONS} 240 /var/cache/man/{{X11R6,local}/,}cat?
 	# with locale subdirs
-	%{_sbindir}/tmpwatch -f 240 /var/cache/man/{local,X11R6,}/{??,??_??}/cat? 2>/dev/null
-fi
-%{_sbindir}/tmpwatch 720 /var/tmp
-# Cleanup temporary files for php:
-if [ -d /var/run/php ]; then
-	%{_sbindir}/tmpwatch 720 /var/run/php
+	%{_sbindir}/tmpwatch ${OPTIONS} 240 /var/cache/man/{local,X11R6,}/{??,??_??}/cat? 2>/dev/null
 fi
 # Cleanup amavis quarantine:
 if [ -d /var/spool/amavis/virusmails ]; then
 	if [ ${AMAVIS_QUARANTINE} -ne 0 ]; then
-		%{_sbindir}/tmpwatch ${AMAVIS_QUARANTINE} /var/spool/amavis/virusmails
+		%{_sbindir}/tmpwatch ${OPTIONS} ${AMAVIS_QUARANTINE} /var/spool/amavis/virusmails
 	fi
 fi
 EOF
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/%{name}
+install %{SOURCE2} $RPM_BUILD_ROOT%{_sbindir}/%{name}.cron
+install %{SOURCE3} $RPM_BUILD_ROOT/etc/tmpwatch/common.conf
+
+ln -s %{_sbindir}/%{name}.cron $RPM_BUILD_ROOT/etc/cron.daily/%{name}.directories
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -146,7 +152,9 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_sbindir}/tmpwatch
+%dir /etc/tmpwatch
 %attr(750,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/cron.daily/*
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/%{name}
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/tmpwatch/*.conf
+%attr(755,root,root) %{_sbindir}/%{name}*
 %{_mandir}/man8/*
