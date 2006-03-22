@@ -1,0 +1,16 @@
+#!/bin/sh
+#########
+# Some defaults:
+if [ -f /etc/sysconfig/tmpwatch ]; then
+	. /etc/sysconfig/tmpwatch
+fi
+
+########
+for file in /etc/tmpwatch/*.conf; do
+	grep ^/ ${file} | while read line; do
+		TIME=`echo ${line} | awk '{ print $2 }'`
+		DIRECTORY=`echo ${line} | awk '{ print $1 }'`
+		/usr/sbin/tmpwatch ${TIME} ${DIRECTORY}
+	done
+done
+
