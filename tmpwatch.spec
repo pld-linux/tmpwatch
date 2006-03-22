@@ -1,6 +1,5 @@
 # TODO:
 # - move whole amavis-related stuff to it's own spec. trigger is needed...
-# - move man-related dirs to man.spec
 #
 Summary:	A utility for removing files based on when they were last accessed
 Summary(de):	Utility zum Entfernen von Dateien, basierend auf ihrer Zugriffszeit
@@ -12,7 +11,7 @@ Summary(ru):	Утилита удаления файлов по критерию давности последнего доступа
 Summary(uk):	Утил╕та видалення файл╕в за критер╕╓м давност╕ останнього доступу
 Name:		tmpwatch
 Version:	2.9.6
-Release:	1.5
+Release:	1.8
 License:	GPL
 Group:		Applications/System
 # New versions are taken from:
@@ -121,12 +120,7 @@ fi
 
 %{_sbindir}/tmpwatch ${OPTIONS} -x /tmp/.X11-unix -x /tmp/.XIM-unix -x /tmp/.font-unix \
 -x /tmp/.ICE-unix -x /tmp/.Test-unix 240 /tmp
-if [ -d /var/cache/man ]; then
-	# without locale
-	%{_sbindir}/tmpwatch ${OPTIONS} 240 /var/cache/man/{{X11R6,local}/,}cat?
-	# with locale subdirs
-	%{_sbindir}/tmpwatch ${OPTIONS} 240 /var/cache/man/{local,X11R6,}/{??,??_??}/cat? 2>/dev/null
-fi
+
 # Cleanup amavis quarantine:
 if [ -d /var/spool/amavis/virusmails ]; then
 	if [ ${AMAVIS_QUARANTINE} -ne 0 ]; then
