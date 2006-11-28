@@ -9,8 +9,8 @@ fi
 ########
 for file in /etc/tmpwatch/*.conf; do
 	grep ^/ ${file} | while read DIRECTORY TIME OPTS; do
-		OPTIONS="${OPTIONS} ${OPTS}"
-		/usr/sbin/tmpwatch ${OPTIONS} ${TIME} ${DIRECTORY}
+		OPTS="${OPTIONS} ${OPTS}"
+		/usr/sbin/tmpwatch ${OPTS} ${TIME} ${DIRECTORY}
 	done
 done
 
