@@ -8,9 +8,8 @@ fi
 
 ########
 for file in /etc/tmpwatch/*.conf; do
-	grep ^/ ${file} | while read line; do
-		TIME=`echo ${line} | awk '{ print $2 }'`
-		DIRECTORY=`echo ${line} | awk '{ print $1 }'`
+	grep ^/ ${file} | while read DIRECTORY TIME OPTS; do
+		OPTIONS="${OPTIONS} ${OPTS}"
 		/usr/sbin/tmpwatch ${OPTIONS} ${TIME} ${DIRECTORY}
 	done
 done
