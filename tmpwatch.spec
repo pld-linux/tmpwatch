@@ -11,12 +11,12 @@ Summary(ru):	Утилита удаления файлов по критерию давности последнего доступа
 Summary(uk):	Утил╕та видалення файл╕в за критер╕╓м давност╕ останнього доступу
 Name:		tmpwatch
 Version:	2.9.10
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		Applications/System
 # New versions are taken from:
 # ftp://download.fedora.redhat.com/pub/fedora/linux/core/development/source/SRPMS/
-Source0:	http://www.blues.gda.pl/SOURCES/%{name}-%{version}.tar.gz
+Source0:	%{name}-%{version}.tar.gz
 # Source0-md5:	4fdcefdb36bc6c8ef5fea26eb4f1a2e3
 Source1:	%{name}.sysconfig
 Source2:	%{name}.cron
