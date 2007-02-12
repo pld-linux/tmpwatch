@@ -2,13 +2,13 @@
 # - move whole amavis-related stuff to it's own spec. trigger is needed...
 #
 Summary:	A utility for removing files based on when they were last accessed
-Summary(de.UTF-8):   Utility zum Entfernen von Dateien, basierend auf ihrer Zugriffszeit
-Summary(es.UTF-8):   Limpia archivos en directorios basado en sus edades
-Summary(fr.UTF-8):   Nettoie les fichiers dans les répertoires en fonction de leur age
-Summary(pl.UTF-8):   Narzędzie kasujące pliki w oparciu o czas ostatniego dostępu
-Summary(pt_BR.UTF-8):   Limpa arquivos em diretórios baseado em suas idades
-Summary(ru.UTF-8):   Утилита удаления файлов по критерию давности последнего доступа
-Summary(uk.UTF-8):   Утиліта видалення файлів за критерієм давності останнього доступу
+Summary(de.UTF-8):	Utility zum Entfernen von Dateien, basierend auf ihrer Zugriffszeit
+Summary(es.UTF-8):	Limpia archivos en directorios basado en sus edades
+Summary(fr.UTF-8):	Nettoie les fichiers dans les répertoires en fonction de leur age
+Summary(pl.UTF-8):	Narzędzie kasujące pliki w oparciu o czas ostatniego dostępu
+Summary(pt_BR.UTF-8):	Limpa arquivos em diretórios baseado em suas idades
+Summary(ru.UTF-8):	Утилита удаления файлов по критерию давности последнего доступа
+Summary(uk.UTF-8):	Утиліта видалення файлів за критерієм давності останнього доступу
 Name:		tmpwatch
 Version:	2.9.10
 Release:	1
