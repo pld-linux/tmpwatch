@@ -2,13 +2,13 @@
 # - move whole amavis-related stuff to it's own spec. trigger is needed...
 #
 Summary:	A utility for removing files based on when they were last accessed
-Summary(de):	Utility zum Entfernen von Dateien, basierend auf ihrer Zugriffszeit
-Summary(es):	Limpia archivos en directorios basado en sus edades
-Summary(fr):	Nettoie les fichiers dans les rИpertoires en fonction de leur age
-Summary(pl):	NarzЙdzie kasuj╠ce pliki w oparciu o czas ostatniego dostЙpu
-Summary(pt_BR):	Limpa arquivos em diretСrios baseado em suas idades
-Summary(ru):	Утилита удаления файлов по критерию давности последнего доступа
-Summary(uk):	Утил╕та видалення файл╕в за критер╕╓м давност╕ останнього доступу
+Summary(de.UTF-8):   Utility zum Entfernen von Dateien, basierend auf ihrer Zugriffszeit
+Summary(es.UTF-8):   Limpia archivos en directorios basado en sus edades
+Summary(fr.UTF-8):   Nettoie les fichiers dans les rц╘pertoires en fonction de leur age
+Summary(pl.UTF-8):   Narzд≥dzie kasujд┘ce pliki w oparciu o czas ostatniego dostд≥pu
+Summary(pt_BR.UTF-8):   Limpa arquivos em diretцЁrios baseado em suas idades
+Summary(ru.UTF-8):   пёя┌п╦п╩п╦я┌п╟ я┐п╢п╟п╩п╣п╫п╦я▐ я└п╟п╧п╩п╬п╡ п©п╬ п╨я─п╦я┌п╣я─п╦я▌ п╢п╟п╡п╫п╬я│я┌п╦ п©п╬я│п╩п╣п╢п╫п╣пЁп╬ п╢п╬я│я┌я┐п©п╟
+Summary(uk.UTF-8):   пёя┌п╦п╩я√я┌п╟ п╡п╦п╢п╟п╩п╣п╫п╫я▐ я└п╟п╧п╩я√п╡ п╥п╟ п╨я─п╦я┌п╣я─я√я■п╪ п╢п╟п╡п╫п╬я│я┌я√ п╬я│я┌п╟п╫п╫я▄п╬пЁп╬ п╢п╬я│я┌я┐п©я┐
 Name:		tmpwatch
 Version:	2.9.10
 Release:	1
@@ -35,58 +35,58 @@ directories which are used for temporarily holding files (for example,
 /tmp). tmpwatch ignores symlinks, won't switch filesystems and only
 removes empty directories and regular files.
 
-%description -l de
+%description -l de.UTF-8
 Das tmpwatch-Utility sucht rekursiv durch angegebene Verzeichnisse und
 entfernt Dateien, die in einer angegebenen Zeitspanne nicht benutzt
 wurden. Tmpwatch wird normalerweise benutzt, um Verzeichnisse
-aufzurДumen, in denen temporДre Dateien gelagert werden (z.B. /tmp).
+aufzurц╓umen, in denen temporц╓re Dateien gelagert werden (z.B. /tmp).
 Tmpwatch ignoriert symlinks, wechselt kein Filesystem und entfernt nur
 normale Dateien und leere Verzeichnisse.
 
-%description -l es
+%description -l es.UTF-8
 Este paquete nos ofrece un programa que puede ser usado para limpiar
-directorios. PeriСdicamente remueve el directorio (ignorando symlinks)
+directorios. PeriцЁdicamente remueve el directorio (ignorando symlinks)
 y elimina archivos que no fueron accedidos en un tiempo especificado
 por el usuario.
 
-%description -l fr
+%description -l fr.UTF-8
 Ce paquetage offre un programme permettant de nettoyer les
-rИpertoires. Il recherche rИcursivement dans le rИpertoire (en
+rц╘pertoires. Il recherche rц╘cursivement dans le rц╘pertoire (en
 ignorant les liens symboliques) et supprime les fichiers qui n'ont pas
-ИtИ accИdИs depuis une pИriode donnИe.
+ц╘tц╘ accц╘dц╘s depuis une pц╘riode donnц╘e.
 
-%description -l pl
-tmpwatch rekursywnie przeszukuje wyspecyfikowane katalogi szukaj╠c
-plikСw, ktСre nie byЁy u©ywane przez okre╤lony okres czasu, w celu ich
-usuniЙcia. Jest on zazwyczaj u©ywany do czyszczenia katalogСw w
-ktСrych przechowywane s╠ pliki tymczasowe (na przykЁad /tmp). tmpwatch
-ignoruje symlinki, nie zmienia systemu plikСw podczas przeszukiwania
-katalogСw, usuwa tylko puste katalogi i zwyczajne pliki.
+%description -l pl.UTF-8
+tmpwatch rekursywnie przeszukuje wyspecyfikowane katalogi szukajд┘c
+plikцЁw, ktцЁre nie byе┌y uе╪ywane przez okreе⌡lony okres czasu, w celu ich
+usuniд≥cia. Jest on zazwyczaj uе╪ywany do czyszczenia katalogцЁw w
+ktцЁrych przechowywane sд┘ pliki tymczasowe (na przykе┌ad /tmp). tmpwatch
+ignoruje symlinki, nie zmienia systemu plikцЁw podczas przeszukiwania
+katalogцЁw, usuwa tylko puste katalogi i zwyczajne pliki.
 
-%description -l pt_BR
+%description -l pt_BR.UTF-8
 Este pacote oferece um programa que pode ser usado para limpar
-diretСrios. Ele periodicamente vasculha o diretСrio (ignorando
-symlinks) e remove arquivos que nЦo foram acessados em um tempo
-especificado pelo usuАrio.
+diretцЁrios. Ele periodicamente vasculha o diretцЁrio (ignorando
+symlinks) e remove arquivos que nцёo foram acessados em um tempo
+especificado pelo usuц║rio.
 
-%description -l tr
-Bu paket, dizinleri temizleyen bir program iГerir. Simgesel baПlarЩ
-gЖzЖnЭne almadan dizinleri rekЭrsif olarak arar ve kullanЩcЩnЩn
-Жnceden belirlediПi bir sЭrede eriЧilmemiЧ olanlarЩ siler.
+%description -l tr.UTF-8
+Bu paket, dizinleri temizleyen bir program iц╖erir. Simgesel baд÷larд╠
+gц╤zц╤nц╪ne almadan dizinleri rekц╪rsif olarak arar ve kullanд╠cд╠nд╠n
+ц╤nceden belirlediд÷i bir sц╪rede eriе÷ilmemiе÷ olanlarд╠ siler.
 
-%description -l ru
-Утилита tmpwatch рекурсивно удаляет в указанных каталогах файлы, к
-которым не было доступа указанное время. Обычно используется для
-очистки каталогов, хранящих временные файлы (например, /tmp). Эта
-утилита игнорирует симлинки, не переходит на другие файловые системы и
-удаляет только пустые каталоги и обычные (не специальные) файлы.
+%description -l ru.UTF-8
+пёя┌п╦п╩п╦я┌п╟ tmpwatch я─п╣п╨я┐я─я│п╦п╡п╫п╬ я┐п╢п╟п╩я▐п╣я┌ п╡ я┐п╨п╟п╥п╟п╫п╫я▀я┘ п╨п╟я┌п╟п╩п╬пЁп╟я┘ я└п╟п╧п╩я▀, п╨
+п╨п╬я┌п╬я─я▀п╪ п╫п╣ п╠я▀п╩п╬ п╢п╬я│я┌я┐п©п╟ я┐п╨п╟п╥п╟п╫п╫п╬п╣ п╡я─п╣п╪я▐. п·п╠я▀я┤п╫п╬ п╦я│п©п╬п╩я▄п╥я┐п╣я┌я│я▐ п╢п╩я▐
+п╬я┤п╦я│я┌п╨п╦ п╨п╟я┌п╟п╩п╬пЁп╬п╡, я┘я─п╟п╫я▐я┴п╦я┘ п╡я─п╣п╪п╣п╫п╫я▀п╣ я└п╟п╧п╩я▀ (п╫п╟п©я─п╦п╪п╣я─, /tmp). п╜я┌п╟
+я┐я┌п╦п╩п╦я┌п╟ п╦пЁп╫п╬я─п╦я─я┐п╣я┌ я│п╦п╪п╩п╦п╫п╨п╦, п╫п╣ п©п╣я─п╣я┘п╬п╢п╦я┌ п╫п╟ п╢я─я┐пЁп╦п╣ я└п╟п╧п╩п╬п╡я▀п╣ я│п╦я│я┌п╣п╪я▀ п╦
+я┐п╢п╟п╩я▐п╣я┌ я┌п╬п╩я▄п╨п╬ п©я┐я│я┌я▀п╣ п╨п╟я┌п╟п╩п╬пЁп╦ п╦ п╬п╠я▀я┤п╫я▀п╣ (п╫п╣ я│п©п╣я├п╦п╟п╩я▄п╫я▀п╣) я└п╟п╧п╩я▀.
 
-%description -l uk
-Утил╕та tmpwatch рекурсивно видаля╓ у вказаних каталогах файли, до
-яких не було доступу вказаний час. Звичайно використову╓ться для
-очистки каталог╕в, що збер╕гають тимчасов╕ файли (наприклад, /tmp). Ця
-утил╕та ╕гнору╓ симл╕нки, не переходить на ╕нш╕ файлов╕ системи ╕
-видаля╓ т╕льки порожн╕ каталоги та звичайн╕ (не спец╕альн╕) файли.
+%description -l uk.UTF-8
+пёя┌п╦п╩я√я┌п╟ tmpwatch я─п╣п╨я┐я─я│п╦п╡п╫п╬ п╡п╦п╢п╟п╩я▐я■ я┐ п╡п╨п╟п╥п╟п╫п╦я┘ п╨п╟я┌п╟п╩п╬пЁп╟я┘ я└п╟п╧п╩п╦, п╢п╬
+я▐п╨п╦я┘ п╫п╣ п╠я┐п╩п╬ п╢п╬я│я┌я┐п©я┐ п╡п╨п╟п╥п╟п╫п╦п╧ я┤п╟я│. п≈п╡п╦я┤п╟п╧п╫п╬ п╡п╦п╨п╬я─п╦я│я┌п╬п╡я┐я■я┌я▄я│я▐ п╢п╩я▐
+п╬я┤п╦я│я┌п╨п╦ п╨п╟я┌п╟п╩п╬пЁя√п╡, я┴п╬ п╥п╠п╣я─я√пЁп╟я▌я┌я▄ я┌п╦п╪я┤п╟я│п╬п╡я√ я└п╟п╧п╩п╦ (п╫п╟п©я─п╦п╨п╩п╟п╢, /tmp). п╕я▐
+я┐я┌п╦п╩я√я┌п╟ я√пЁп╫п╬я─я┐я■ я│п╦п╪п╩я√п╫п╨п╦, п╫п╣ п©п╣я─п╣я┘п╬п╢п╦я┌я▄ п╫п╟ я√п╫я┬я√ я└п╟п╧п╩п╬п╡я√ я│п╦я│я┌п╣п╪п╦ я√
+п╡п╦п╢п╟п╩я▐я■ я┌я√п╩я▄п╨п╦ п©п╬я─п╬п╤п╫я√ п╨п╟я┌п╟п╩п╬пЁп╦ я┌п╟ п╥п╡п╦я┤п╟п╧п╫я√ (п╫п╣ я│п©п╣я├я√п╟п╩я▄п╫я√) я└п╟п╧п╩п╦.
 
 %prep
 %setup -q
