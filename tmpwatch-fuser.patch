@@ -1,0 +1,22 @@
+--- x/tmpwatch.c	2006-11-05 02:31:50.000000000 +0100
++++ x/tmpwatch.c	2007-05-29 13:35:44.000000000 +0200
+@@ -46,7 +46,7 @@
+ #define attribute__(X)
+ #endif
+ 
+-#define FUSER_PATH "/sbin/fuser"
++#define FUSER_PATH "/bin/fuser"
+ #define FUSER_ARGS "-s"
+ 
+ #define LOG_REALDEBUG	1
+--- x/tmpwatch.8	2006-11-05 02:31:50.000000000 +0100
++++ x/tmpwatch.8	2007-05-29 13:35:37.000000000 +0200
+@@ -100,7 +100,7 @@
+ Attempt to use the "fuser" command to see if a file is already open
+ before removing it.  Not enabled by default.   Does help in some
+ circumstances, but not all.  Dependent on fuser being installed in
+-/sbin.  Not supported on HP-UX or Solaris.
++/bin.  Not supported on HP-UX or Solaris.
+ 
+ .TP
+ \fB-t, -\-test\fR

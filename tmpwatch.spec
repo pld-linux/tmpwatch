@@ -11,7 +11,7 @@ Summary(ru.UTF-8):	Утилита удаления файлов по крите�
 Summary(uk.UTF-8):	Утиліта видалення файлів за критерієм давності останнього доступу
 Name:		tmpwatch
 Version:	2.9.10
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 # New versions are taken from:
@@ -22,6 +22,7 @@ Source1:	%{name}.sysconfig
 Source2:	%{name}.cron
 Source3:	%{name}.conf
 Patch0:		%{name}-ac_am.patch
+Patch1:		%{name}-fuser.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
@@ -91,6 +92,7 @@ gözönüne almadan dizinleri rekürsif olarak arar ve kullanıcının
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 rm -f missing
