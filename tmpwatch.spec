@@ -11,7 +11,7 @@ Summary(ru.UTF-8):	Утилита удаления файлов по крите�
 Summary(uk.UTF-8):	Утиліта видалення файлів за критерієм давності останнього доступу
 Name:		tmpwatch
 Version:	2.9.10
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/System
 # New versions are taken from:
