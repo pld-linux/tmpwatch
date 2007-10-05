@@ -121,7 +121,7 @@ if [ -f /etc/sysconfig/tmpwatch ]; then
 fi
 
 %{_sbindir}/tmpwatch ${OPTIONS} -x /tmp/.X11-unix -x /tmp/.XIM-unix -x /tmp/.font-unix \
--x /tmp/.ICE-unix -x /tmp/.Test-unix 240 /tmp
+-x /tmp/.ICE-unix -x /tmp/.Test-unix -x /tmp/.s.PGSQL.\* 240 /tmp
 
 # Cleanup amavis quarantine:
 if [ -d /var/spool/amavis/virusmails ]; then
