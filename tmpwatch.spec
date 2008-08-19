@@ -10,22 +10,21 @@ Summary(pt_BR.UTF-8):	Limpa arquivos em diretórios baseado em suas idades
 Summary(ru.UTF-8):	Утилита удаления файлов по критерию давности последнего доступа
 Summary(uk.UTF-8):	Утиліта видалення файлів за критерієм давності останнього доступу
 Name:		tmpwatch
-Version:	2.9.10
-Release:	3
-License:	GPL
+Version:	2.9.13
+Release:	1
+License:	GPL v2
 Group:		Applications/System
-# New versions are taken from:
-# ftp://download.fedora.redhat.com/pub/fedora/linux/core/development/source/SRPMS/
-Source0:	%{name}-%{version}.tar.gz
-# Source0-md5:	4fdcefdb36bc6c8ef5fea26eb4f1a2e3
+Source0:	https://fedorahosted.org/releases/t/m/tmpwatch/%{name}-%{version}.tar.bz2
+# Source0-md5:	b828729c366f7de7db0feb7982c6cf77
 Source1:	%{name}.sysconfig
 Source2:	%{name}.cron
 Source3:	%{name}.conf
 Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-fuser.patch
+URL:		https://fedorahosted.org/tmpwatch/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libtool
+#BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -95,13 +94,10 @@ gözönüne almadan dizinleri rekürsif olarak arar ve kullanıcının
 %patch1 -p1
 
 %build
-rm -f missing
-%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-%configure \
-	CFLAGS="%{rpmcflags} -D_FILE_OFFSET_BITS=64"
+%configure
 %{__make}
 
 %install
@@ -148,9 +144,12 @@ fi
 
 %files
 %defattr(644,root,root,755)
+%doc ChangeLog NEWS README
+%attr(755,root,root) %{_sbindir}/tmpwatch
+%attr(755,root,root) %{_sbindir}/tmpwatch.cron
 %dir /etc/tmpwatch
-%attr(750,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/cron.daily/*
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/%{name}
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/tmpwatch/*.conf
-%attr(755,root,root) %{_sbindir}/%{name}*
-%{_mandir}/man8/*
+%attr(750,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/cron.daily/tmpwatch
+%attr(750,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/cron.daily/tmpwatch.directories
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/tmpwatch
+%{_mandir}/man8/tmpwatch.8*
