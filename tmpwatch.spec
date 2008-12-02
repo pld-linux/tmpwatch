@@ -149,7 +149,7 @@ fi
 %attr(755,root,root) %{_sbindir}/tmpwatch.cron
 %dir /etc/tmpwatch
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/tmpwatch/*.conf
-%attr(750,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/cron.daily/tmpwatch
-%attr(750,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/cron.daily/tmpwatch.directories
+%attr(750,root,root) %config(noreplace,missingok) %verify(not md5 mtime size) /etc/cron.daily/tmpwatch
+%attr(750,root,root) %config(noreplace,missingok) %verify(not md5 mtime size) /etc/cron.daily/tmpwatch.directories
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/tmpwatch
 %{_mandir}/man8/tmpwatch.8*
