@@ -1,11 +1,5 @@
 # Customized setings for tmpwatch
 
-# Comment-out the line below for enabling tmpwatch.
-# This prevents unaware removal of files in case of
-# installing this package due to rpm directory dependencies.
-
-echo "tmpwatch is disabled by default, please unlock it in /etc/sysconfig/tmpwatch"; exit 1
-
 # Options for cron tmpwatch call:
 OPTIONS="-fq"
 
