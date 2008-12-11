@@ -11,7 +11,7 @@ Summary(ru.UTF-8):	Утилита удаления файлов по крите�
 Summary(uk.UTF-8):	Утиліта видалення файлів за критерієм давності останнього доступу
 Name:		tmpwatch
 Version:	2.9.13
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/System
 Source0:	https://fedorahosted.org/releases/t/m/tmpwatch/%{name}-%{version}.tar.bz2
@@ -147,7 +147,6 @@ fi
 %doc ChangeLog NEWS README
 %attr(755,root,root) %{_sbindir}/tmpwatch
 %attr(755,root,root) %{_sbindir}/tmpwatch.cron
-%dir /etc/tmpwatch
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/tmpwatch/*.conf
 %attr(750,root,root) %config(noreplace,missingok) %verify(not md5 mtime size) /etc/cron.daily/tmpwatch
 %attr(750,root,root) %config(noreplace,missingok) %verify(not md5 mtime size) /etc/cron.daily/tmpwatch.directories
