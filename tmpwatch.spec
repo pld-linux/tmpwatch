@@ -10,12 +10,12 @@ Summary(pt_BR.UTF-8):	Limpa arquivos em diretórios baseado em suas idades
 Summary(ru.UTF-8):	Утилита удаления файлов по критерию давности последнего доступа
 Summary(uk.UTF-8):	Утиліта видалення файлів за критерієм давності останнього доступу
 Name:		tmpwatch
-Version:	2.9.13
-Release:	2
+Version:	2.9.14
+Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	https://fedorahosted.org/releases/t/m/tmpwatch/%{name}-%{version}.tar.bz2
-# Source0-md5:	b828729c366f7de7db0feb7982c6cf77
+# Source0-md5:	9d77f5f4a1bb93fec08b17d53fef6d4f
 Source1:	%{name}.sysconfig
 Source2:	%{name}.cron
 Source3:	%{name}.conf
