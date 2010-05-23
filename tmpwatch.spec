@@ -10,17 +10,15 @@ Summary(pt_BR.UTF-8):	Limpa arquivos em diretórios baseado em suas idades
 Summary(ru.UTF-8):	Утилита удаления файлов по критерию давности последнего доступа
 Summary(uk.UTF-8):	Утиліта видалення файлів за критерієм давності останнього доступу
 Name:		tmpwatch
-Version:	2.9.17
+Version:	2.10.1
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	https://fedorahosted.org/releases/t/m/tmpwatch/%{name}-%{version}.tar.bz2
-# Source0-md5:	7738f5db4ae0ce3795c224f13a597356
+# Source0-md5:	c26ac6aef91e230f748b08b066c406d9
 Source1:	%{name}.sysconfig
 Source2:	%{name}.cron
 Source3:	%{name}.conf
-Patch0:		%{name}-ac_am.patch
-Patch1:		%{name}-fuser.patch
 URL:		https://fedorahosted.org/tmpwatch/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -90,14 +88,13 @@ gözönüne almadan dizinleri rekürsif olarak arar ve kullanıcının
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
 
 %build
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__automake}
-%configure
+%configure \
+	--with-fuser=/bin/fuser
 %{__make}
 
 %install
