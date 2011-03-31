@@ -11,7 +11,7 @@ Summary(ru.UTF-8):	Утилита удаления файлов по крите�
 Summary(uk.UTF-8):	Утиліта видалення файлів за критерієм давності останнього доступу
 Name:		tmpwatch
 Version:	2.10.1
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/System
 Source0:	https://fedorahosted.org/releases/t/m/tmpwatch/%{name}-%{version}.tar.bz2
@@ -114,7 +114,7 @@ if [ -f /etc/sysconfig/tmpwatch ]; then
 fi
 
 %{_sbindir}/tmpwatch ${OPTIONS} -x /tmp/.X11-unix -x /tmp/.XIM-unix -x /tmp/.font-unix \
--x /tmp/.ICE-unix -x /tmp/.Test-unix -x /tmp/.s.PGSQL.\* 240 /tmp
+-x /tmp/.ICE-unix -x /tmp/.Test-unix -X /tmp/.s.PGSQL.\* 240 /tmp
 
 # Cleanup amavis quarantine:
 if [ -d /var/spool/amavis/virusmails ]; then
