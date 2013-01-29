@@ -1,0 +1,4 @@
+MAILTO=root
+
+# tmpwatch to run daily
+02 5 * * * root /usr/lib/tmpwatch

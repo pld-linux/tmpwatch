@@ -11,7 +11,7 @@ Summary(ru.UTF-8):	Утилита удаления файлов по крите�
 Summary(uk.UTF-8):	Утиліта видалення файлів за критерієм давності останнього доступу
 Name:		tmpwatch
 Version:	2.11
-Release:	2
+Release:	2.2
 License:	GPL v2
 Group:		Applications/System
 Source0:	https://fedorahosted.org/releases/t/m/tmpwatch/%{name}-%{version}.tar.bz2
@@ -19,6 +19,7 @@ Source0:	https://fedorahosted.org/releases/t/m/tmpwatch/%{name}-%{version}.tar.b
 Source1:	%{name}.sysconfig
 Source2:	%{name}.cron
 Source3:	%{name}.conf
+Source4:	%{name}.crontab
 Patch0:		%{name}-boottime.patch
 URL:		https://fedorahosted.org/tmpwatch/
 BuildRequires:	autoconf >= 2.64
@@ -100,36 +101,14 @@ gözönüne almadan dizinleri rekürsif olarak arar ve kullanıcının
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/{cron.daily,sysconfig,%{name}}
-
+install -d $RPM_BUILD_ROOT{/etc/{cron.d,sysconfig,%{name}},%{_prefix}/lib}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-cat > $RPM_BUILD_ROOT/etc/cron.daily/%{name} <<'EOF'
-#!/bin/sh
-# Some defaults:
-AMAVIS_QUARANTINE="1440"
-OPTIONS="-fq"
-if [ -f /etc/sysconfig/tmpwatch ]; then
-	. /etc/sysconfig/tmpwatch
-fi
-
-%{_sbindir}/tmpwatch ${OPTIONS} -x /tmp/.X11-unix -x /tmp/.XIM-unix -x /tmp/.font-unix \
--x /tmp/.ICE-unix -x /tmp/.Test-unix -X /tmp/.s.PGSQL.\* 240 /tmp
-
-# Cleanup amavis quarantine:
-if [ -d /var/spool/amavis/virusmails ]; then
-	if [ ${AMAVIS_QUARANTINE} -ne 0 ]; then
-		%{_sbindir}/tmpwatch ${OPTIONS} ${AMAVIS_QUARANTINE} /var/spool/amavis/virusmails
-	fi
-fi
-EOF
-
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/%{name}
-install %{SOURCE2} $RPM_BUILD_ROOT%{_sbindir}/%{name}.cron
-install %{SOURCE3} $RPM_BUILD_ROOT/etc/tmpwatch/common.conf
-
-ln -s %{_sbindir}/%{name}.cron $RPM_BUILD_ROOT/etc/cron.daily/%{name}.directories
+cp -p %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/%{name}
+cp -p %{SOURCE4} $RPM_BUILD_ROOT/etc/cron.d/%{name}
+cp -p %{SOURCE3} $RPM_BUILD_ROOT/etc/tmpwatch/common.conf
+install -p %{SOURCE2} $RPM_BUILD_ROOT%{_prefix}/lib/tmpwatch
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -140,13 +119,22 @@ if [ -f /usr/sbin/amavisd ]; then
 	echo "That version has enabled amavis-spool cleaning"
 fi
 
+%triggerpostun -- %{name} < 2.11-2.1
+# if previous install had /etc/cron.daily/* files unlinked, disable the cronjob
+if [ ! -e /etc/cron.daily/tmpwatch ]; then
+	echo DISABLE_TMPWATCH_CRON=yes >> /etc/sysconfig/tmpwatch
+fi
+
+if [ ! -e /etc/cron.daily/tmpwatch.directories ]; then
+	echo DISABLE_TMPWATCH_CRON_DIRS=yes >> /etc/sysconfig/tmpwatch
+fi
+
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog NEWS README
 %attr(755,root,root) %{_sbindir}/tmpwatch
-%attr(755,root,root) %{_sbindir}/tmpwatch.cron
+%attr(755,root,root) %{_prefix}/lib/tmpwatch
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/tmpwatch/*.conf
-%attr(750,root,root) %config(noreplace,missingok) %verify(not md5 mtime size) /etc/cron.daily/tmpwatch
-%attr(750,root,root) %config(noreplace,missingok) %verify(not md5 mtime size) /etc/cron.daily/tmpwatch.directories
+%attr(750,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/cron.d/%{name}
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/tmpwatch
 %{_mandir}/man8/tmpwatch.8*
