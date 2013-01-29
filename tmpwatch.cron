@@ -1,4 +1,7 @@
 #!/bin/sh
+# Source function library for is_no()
+. /etc/rc.d/init.d/functions
+
 #########
 # Some defaults:
 AMAVIS_QUARANTINE="1440"
