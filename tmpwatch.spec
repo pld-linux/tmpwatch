@@ -24,8 +24,8 @@ Patch0:		%{name}-boottime.patch
 URL:		https://fedorahosted.org/tmpwatch/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake
-Requires:	crondaemon
 Requires:	rc-scripts
+Suggests:	crondaemon
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
