@@ -1,7 +1,4 @@
 #!/bin/sh
-# Source function library for is_no()
-. /etc/rc.d/init.d/functions
-
 #########
 # Some defaults:
 AMAVIS_QUARANTINE="1440"
@@ -13,7 +10,7 @@ fi
 
 # NOTE: DISABLE_TMPWATCH_* vars are not official, only here to handle migration from < 2.11-2.1
 
-if ! is_no "$DISABLE_TMPWATCH_CRON"; then
+if [ "$DISABLE_TMPWATCH_CRON" != "yes" ]; then
 	/usr/sbin/tmpwatch ${OPTIONS} -x /tmp/.X11-unix -x /tmp/.XIM-unix -x /tmp/.font-unix \
 		-x /tmp/.ICE-unix -x /tmp/.Test-unix -X /tmp/.s.PGSQL.\* 240 /tmp
 
@@ -23,7 +20,7 @@ if ! is_no "$DISABLE_TMPWATCH_CRON"; then
 	fi
 fi
 
-is_no "$DISABLE_TMPWATCH_CRON_DIRS" && exit 0
+[ "$DISABLE_TMPWATCH_CRON_DIRS" = "yes" ] && exit 0
 
 # process extra .conf files
 for file in /etc/tmpwatch/*.conf; do
