@@ -1,12 +1,28 @@
 #!/bin/sh
 #########
 # Some defaults:
+AMAVIS_QUARANTINE="1440"
 OPTIONS="-fq"
+
 if [ -f /etc/sysconfig/tmpwatch ]; then
 	. /etc/sysconfig/tmpwatch
 fi
 
-########
+# NOTE: DISABLE_TMPWATCH_* vars are not official, only here to handle migration from < 2.11-2.1
+
+if [ "$DISABLE_TMPWATCH_CRON" != "yes" ]; then
+	/usr/sbin/tmpwatch ${OPTIONS} -x /tmp/.X11-unix -x /tmp/.XIM-unix -x /tmp/.font-unix \
+		-x /tmp/.ICE-unix -x /tmp/.Test-unix -X /tmp/.s.PGSQL.\* 240 /tmp
+
+	# Cleanup amavis quarantine:
+	if [ ${AMAVIS_QUARANTINE} -gt 0 ] && [ -d /var/spool/amavis/virusmails ]; then
+		/usr/sbin/tmpwatch ${OPTIONS} ${AMAVIS_QUARANTINE} /var/spool/amavis/virusmails
+	fi
+fi
+
+[ "$DISABLE_TMPWATCH_CRON_DIRS" = "yes" ] && exit 0
+
+# process extra .conf files
 for file in /etc/tmpwatch/*.conf; do
 	grep ^/ ${file} | while read DIRECTORY TIME OPTS; do
 		OPTS="${OPTIONS} ${OPTS}"
