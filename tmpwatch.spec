@@ -11,7 +11,7 @@ Summary(ru.UTF-8):	Утилита удаления файлов по крите�
 Summary(uk.UTF-8):	Утиліта видалення файлів за критерієм давності останнього доступу
 Name:		tmpwatch
 Version:	2.11
-Release:	4
+Release:	5
 License:	GPL v2
 Group:		Applications/System
 Source0:	https://fedorahosted.org/releases/t/m/tmpwatch/%{name}-%{version}.tar.bz2
@@ -120,7 +120,7 @@ if [ -f /usr/sbin/amavisd ]; then
 	echo "That version has enabled amavis-spool cleaning"
 fi
 
-%triggerpostun -- %{name} < 2.11-2.1
+%triggerun -- %{name} < 2.11-2.1
 # if previous install had /etc/cron.daily/* files unlinked, disable the cronjob
 if [ ! -e /etc/cron.daily/tmpwatch ]; then
 	echo DISABLE_TMPWATCH_CRON=yes >> /etc/sysconfig/tmpwatch
