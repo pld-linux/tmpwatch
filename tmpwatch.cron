@@ -25,8 +25,7 @@ fi
 # process extra .conf files
 for file in /etc/tmpwatch/*.conf; do
 	grep ^/ ${file} | while read DIRECTORY TIME OPTS; do
-		OPTS="${OPTIONS} ${OPTS}"
-		/usr/sbin/tmpwatch ${OPTS} ${TIME} ${DIRECTORY}
+		/usr/sbin/tmpwatch ${OPTIONS} ${OPTS} ${TIME} ${DIRECTORY}
 	done
 done
 
