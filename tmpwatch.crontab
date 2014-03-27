@@ -1,4 +1,4 @@
 MAILTO=root
 
-# tmpwatch to run daily
-02 5 * * * root /usr/lib/tmpwatch
+# tmpwatch to run hourly
+02 * * * * root /usr/lib/tmpwatch
