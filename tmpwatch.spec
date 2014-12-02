@@ -11,7 +11,7 @@ Summary(ru.UTF-8):	Утилита удаления файлов по крите�
 Summary(uk.UTF-8):	Утиліта видалення файлів за критерієм давності останнього доступу
 Name:		tmpwatch
 Version:	2.11
-Release:	7
+Release:	8
 License:	GPL v2
 Group:		Applications/System
 Source0:	https://fedorahosted.org/releases/t/m/tmpwatch/%{name}-%{version}.tar.bz2
@@ -97,14 +97,17 @@ gözönüne almadan dizinleri rekürsif olarak arar ve kullanıcının
 %{__autoconf}
 %{__automake}
 %configure \
+	--sbindir=%{_bindir} \
 	--with-fuser=/bin/fuser
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/etc/{cron.d,sysconfig,%{name}},%{_prefix}/lib}
+install -d $RPM_BUILD_ROOT{/etc/{cron.d,sysconfig,%{name}},%{_prefix}/lib,%{_sbindir}}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+ln -s ../bin/tmpwatch $RPM_BUILD_ROOT%{_sbindir}/tmpwatch
 
 cp -p %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/%{name}
 cp -p %{SOURCE4} $RPM_BUILD_ROOT/etc/cron.d/%{name}
@@ -134,6 +137,7 @@ fi
 %defattr(644,root,root,755)
 %doc ChangeLog NEWS README
 %attr(755,root,root) %{_sbindir}/tmpwatch
+%attr(755,root,root) %{_bindir}/tmpwatch
 %attr(755,root,root) %{_prefix}/lib/tmpwatch
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/tmpwatch/*.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/cron.d/%{name}
