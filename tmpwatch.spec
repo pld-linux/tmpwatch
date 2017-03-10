@@ -11,7 +11,7 @@ Summary(ru.UTF-8):	Утилита удаления файлов по крите�
 Summary(uk.UTF-8):	Утиліта видалення файлів за критерієм давності останнього доступу
 Name:		tmpwatch
 Version:	2.11
-Release:	9
+Release:	10
 License:	GPL v2
 Group:		Applications/System
 Source0:	https://fedorahosted.org/releases/t/m/tmpwatch/%{name}-%{version}.tar.bz2
@@ -20,11 +20,15 @@ Source1:	%{name}.sysconfig
 Source2:	%{name}.cron
 Source3:	%{name}.conf
 Source4:	%{name}.crontab
+Source5:	cronjob-%{name}.timer
+Source6:	cronjob-%{name}.service
 Patch0:		%{name}-boottime.patch
 URL:		https://fedorahosted.org/tmpwatch/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake
-Suggests:	crondaemon
+BuildRequires:	rpmbuild(macros) >= 1.644
+Requires:	systemd-units >= 38
+Suggests:	cronjobs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -103,7 +107,7 @@ gözönüne almadan dizinleri rekürsif olarak arar ve kullanıcının
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/etc/{cron.d,sysconfig,%{name}},%{_prefix}/lib,%{_sbindir}}
+install -d $RPM_BUILD_ROOT{/etc/{cron.d,sysconfig,%{name}},%{_prefix}/lib,%{_sbindir},%{systemdunitdir}}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
@@ -114,8 +118,19 @@ cp -p %{SOURCE4} $RPM_BUILD_ROOT/etc/cron.d/%{name}
 cp -p %{SOURCE3} $RPM_BUILD_ROOT/etc/tmpwatch/common.conf
 install -p %{SOURCE2} $RPM_BUILD_ROOT%{_prefix}/lib/tmpwatch
 
+cp -p %{SOURCE5} %{SOURCE6} $RPM_BUILD_ROOT%{systemdunitdir}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+%systemd_post cronjob-%{name}.timer
+
+%preun
+%systemd_preun cronjob-%{name}.timer
+
+%postun
+%systemd_reload
 
 %triggerpostun -- %{name} < 2.9.1-4
 if [ -f /usr/sbin/amavisd ]; then
@@ -133,6 +148,9 @@ if [ ! -e /etc/cron.daily/tmpwatch.directories ]; then
 	echo DISABLE_TMPWATCH_CRON_DIRS=yes >> /etc/sysconfig/tmpwatch
 fi
 
+%triggerpostun -- %{name} < 2.11-10
+%systemd_service_enable cronjob-%{name}.timer
+
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog NEWS README
@@ -143,3 +161,5 @@ fi
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/cron.d/%{name}
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/tmpwatch
 %{_mandir}/man8/tmpwatch.8*
+%{systemdunitdir}/cronjob-%{name}.service
+%{systemdunitdir}/cronjob-%{name}.timer
