@@ -132,22 +132,6 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 %systemd_reload
 
-%triggerpostun -- %{name} < 2.9.1-4
-if [ -f /usr/sbin/amavisd ]; then
-	echo "WARNING!! Take a look at /etc/sysconfig/%{name}"
-	echo "That version has enabled amavis-spool cleaning"
-fi
-
-%triggerun -- %{name} < 2.11-2.1
-# if previous install had /etc/cron.daily/* files unlinked, disable the cronjob
-if [ ! -e /etc/cron.daily/tmpwatch ]; then
-	echo DISABLE_TMPWATCH_CRON=yes >> /etc/sysconfig/tmpwatch
-fi
-
-if [ ! -e /etc/cron.daily/tmpwatch.directories ]; then
-	echo DISABLE_TMPWATCH_CRON_DIRS=yes >> /etc/sysconfig/tmpwatch
-fi
-
 %triggerpostun -- %{name} < 2.11-10
 %systemd_service_enable cronjob-%{name}.timer
 
