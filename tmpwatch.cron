@@ -15,6 +15,7 @@ fi
 	-x /tmp/.ICE-unix \
 	-x /tmp/.Test-unix \
 	-X /tmp/.s.PGSQL.\* \
+	-X /tmp/hsperfdata_\* \
 	240 /tmp
 
 # Cleanup amavis quarantine:
