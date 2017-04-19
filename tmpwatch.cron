@@ -8,8 +8,14 @@ if [ -f /etc/sysconfig/tmpwatch ]; then
 	. /etc/sysconfig/tmpwatch
 fi
 
-/usr/sbin/tmpwatch ${OPTIONS} -x /tmp/.X11-unix -x /tmp/.XIM-unix -x /tmp/.font-unix \
-	-x /tmp/.ICE-unix -x /tmp/.Test-unix -X /tmp/.s.PGSQL.\* 240 /tmp
+/usr/sbin/tmpwatch ${OPTIONS} \
+	-x /tmp/.X11-unix \
+	-x /tmp/.XIM-unix \
+	-x /tmp/.font-unix \
+	-x /tmp/.ICE-unix \
+	-x /tmp/.Test-unix \
+	-X /tmp/.s.PGSQL.\* \
+	240 /tmp
 
 # Cleanup amavis quarantine:
 if [ ${AMAVIS_QUARANTINE} -gt 0 ] && [ -d /var/spool/amavis/virusmails ]; then
@@ -22,4 +28,3 @@ for file in /etc/tmpwatch/*.conf; do
 		/usr/sbin/tmpwatch ${OPTIONS} ${OPTS} ${TIME} ${DIRECTORY}
 	done
 done
-
