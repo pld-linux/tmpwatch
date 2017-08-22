@@ -11,10 +11,10 @@ Summary(ru.UTF-8):	Утилита удаления файлов по крите�
 Summary(uk.UTF-8):	Утиліта видалення файлів за критерієм давності останнього доступу
 Name:		tmpwatch
 Version:	2.11
-Release:	11
+Release:	12
 License:	GPL v2
 Group:		Applications/System
-Source0:	https://fedorahosted.org/releases/t/m/tmpwatch/%{name}-%{version}.tar.bz2
+Source0:	https://releases.pagure.org/tmpwatch/%{name}-%{version}.tar.bz2
 # Source0-md5:	9ea7e169296eb1196b80fe05bba1cbd0
 Source1:	%{name}.sysconfig
 Source2:	%{name}.cron
@@ -23,7 +23,7 @@ Source4:	%{name}.crontab
 Source5:	cronjob-%{name}.timer
 Source6:	cronjob-%{name}.service
 Patch0:		%{name}-boottime.patch
-URL:		https://fedorahosted.org/tmpwatch/
+URL:		https://pagure.io/tmpwatch
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake
 BuildRequires:	rpmbuild(macros) >= 1.644
