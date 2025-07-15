@@ -94,7 +94,7 @@ gözönüne almadan dizinleri rekürsif olarak arar ve kullanıcının
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__aclocal} -I m4
